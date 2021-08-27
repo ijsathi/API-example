@@ -1,5 +1,5 @@
 const loadBuddy = () =>{
-    fetch('https://randomuser.me/api/?results=5')
+    fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())
     .then(data => displayBuddy(data))
 
@@ -18,10 +18,3 @@ const displayBuddy = data =>{
     }
 
 }
-
-
-
-
-
-
-
