@@ -1,7 +1,7 @@
 const searchFood = ()=>{
     const searchFeild = document.getElementById('search-feild')
     const searchText = searchFeild.value;
-    // console.log(searchText);
+    console.log(searchText);
     searchFeild.value = '';
     const url =`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
     fetch(url)
@@ -11,7 +11,7 @@ const searchFood = ()=>{
 const displaySearchResult = meals =>{
     const searchResult = document.getElementById('search-result')
     searchResult.innerHTML = '';
-
+    
     meals.forEach(meal =>{
         const div = document.createElement('div')
         div.classList.add('col')
@@ -28,15 +28,19 @@ const displaySearchResult = meals =>{
     })
 }
 
-const loadMealDetail = mealId =>{
+const loadMealDetail =async mealId =>{
     const url =`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displayMealDetails(data.meals[0]))
+
+    const res = await fetch(url);
+    const data = await res.json();
+    displayMealDetails(data.meals[0])
+    // fetch(url)
+    // .then(res => res.json())
+    // .then(data => displayMealDetails(data.meals[0]))
 }
 
 const displayMealDetails = meal =>{
-    console.log(meal);
+    // console.log(meal);
     const mealDetails = document.getElementById('meal-details')
     mealDetails.textContent =''
     const div = document.createElement('div')
